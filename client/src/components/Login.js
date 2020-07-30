@@ -5,7 +5,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
@@ -16,59 +15,63 @@ import { AuthContext } from '../contexts/AuthContext';
 import NavLink from'./NavLink';
 import DashBoard from'./DashBoard';
 
-const Login = ({props,Children})=>{
+const Login = props => {
  const [user,setUser] = useState({username: " ", password : " "});
  const [isAuthenticated,setIsAuthenticated] = useState(false);
  //const [message,setMessage] = useState(null);// 
 //const [user,setUser,isAuthenticated, setIsAuthenticated] = useContext(AuthContext);
 
-const onChange = event =>{
-    setUser({...user,[event.target.name] : event.target.value});
-};
+  const onChange = event =>{
+      setUser({...user,[event.target.name] : event.target.value});
+  };
 
-const onSubmit = e =>{
-    e.preventDefault();
-    AuthService.login(user).then(data=>{
-        console.log(data);
-        const { isAuthenticated,user,    } = data;
-        if(isAuthenticated){
-            //console.log("from login2.js" + data.user.username)
-            setUser(data.user);
-            setIsAuthenticated(isAuthenticated);
-            props.history.push('/DashBoard',[{user}]);
-           //authContext.setIsAuthenticated();
-            localStorage.setItem('Authorization', data.token);
-           
-        }
-        else{
-            alert("Invalid!");
-            //setMessage(message);
-        }
-    });
-}
+  const onSubmit = e =>{
+      e.preventDefault();
+      AuthService.login(user).then(data=>{
+          console.log(data);
+          const { isAuthenticated,user,    } = data;
+          if(isAuthenticated){
+              setUser(data.user);
+              setIsAuthenticated(isAuthenticated);
+              //authContext.setIsAuthenticated();
+              localStorage.setItem('Authorization', data.token);
+              props.history.push('/DashBoard',[{user}]);
+          }
+          else{
+              alert("Invalid!");
+              //setMessage(message);
+          }
+      });
+  }
 
-
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
+  const useStyles = makeStyles((theme) => ({
+    paper: {
+      marginTop: theme.spacing(8),
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+    },
+    avatar: {
+      margin: theme.spacing(1),
+      backgroundColor: theme.palette.secondary.main,
+    },
+    form: {
+      width: '100%', // Fix IE 11 issue.
+      marginTop: theme.spacing(1),
+    },
+    submit: {
+      margin: theme.spacing(3, 0, 2),
+    },
+  }));
 
   const classes = useStyles();
+
+  const goToRegister = e =>{
+    props.history.push('/Register');
+  };
+  const goToForgotPassword = e =>{
+    props.history.push('/ForGotPassword');
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -119,15 +122,10 @@ const useStyles = makeStyles((theme) => ({
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="/ForGotPassword" variant="body2">
-                Forgot password?
-               
-              </Link>
+              <Button color="primary" onClick={goToForgotPassword}>Forgot password?</Button>
             </Grid>
             <Grid item>
-              <Link href="/Register" variant="body2">
-                {"Already have an account? Sign Up"}
-              </Link>
+              <Button color="primary" onClick={goToRegister}>Create account</Button>
             </Grid>
           </Grid>
         </form>
@@ -139,6 +137,5 @@ const useStyles = makeStyles((theme) => ({
     </Container>
   );
 }
-
 
 export default Login;

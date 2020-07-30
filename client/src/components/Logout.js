@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 
-function Logout(){
+const Logout = props => {
 //const [refreshDrawer,setRefreshDrawer] = useContext(DrawerContext);
 
     // AuthService.logout().then(data=>{
@@ -10,12 +10,11 @@ function Logout(){
     //        console.log(data + "from logout");
     //     }
     // });
-    localStorage.clear();
-    
+        localStorage.clear();
+        props.history.push('/Login');
  //{setRefreshDrawer(true)}
     return(
         <div>
-           
             <h1> You have successfully Logout </h1> 
         </div>
     )

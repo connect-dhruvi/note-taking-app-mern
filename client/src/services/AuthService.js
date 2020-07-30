@@ -1,4 +1,3 @@
-
 export default {
     login: user => {
         console.log(user);
@@ -33,9 +32,9 @@ export default {
             .then(res => {
                 if (res.status !== 401)
                     return res.json().then(data => data);
-                else{
+                else {
                     //props.history.push('/Login',)
-                    return { isAuthenticated: false, user: { username: "", role: "" } }; 
+                    return { isAuthenticated: false, user: { username: "", role: "" } };
                 }
             });
     },

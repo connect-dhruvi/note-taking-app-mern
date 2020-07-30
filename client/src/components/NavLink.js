@@ -13,21 +13,19 @@ function NavList() {
                 <div>
                         {
                                 <List>
-                                        
+
                                         <ListItem button component={Link} to='/MyAccount'>
                                                 <ListItemIcon><AccountCircleIcon /></ListItemIcon>
-                                                <ListItemText>MyAccount</ListItemText> 
+                                                <ListItemText>MyAccount</ListItemText>
                                         </ListItem>
-                                        <ListItem button component={Link} to = "/Notes">
+                                        <ListItem button component={Link} to="/Notes">
                                                 <ListItemIcon><EventNoteIcon /> </ListItemIcon>
-                                                 <ListItemText>Notes</ListItemText> 
+                                                <ListItemText>Notes</ListItemText>
                                         </ListItem>
-                                       
                                         <ListItem button component={Link} to='/Logout' >
                                                 <ListItemIcon><ExitToAppIcon /> </ListItemIcon>
-                                                 <ListItemText>Logout</ListItemText>
+                                                <ListItemText>Logout</ListItemText>
                                         </ListItem>
-                                        
                                 </List>}
                 </div>
         );

@@ -20,8 +20,8 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 // import ArchiveIcon from '@material-ui/icons/Archive';
 // import Paper from '@material-ui/core/Paper';
 // import Grid from '@material-ui/core/Grid';
-import {BrowserRouter,Route,Switch, Router} from 'react-router-dom';
-import {createBrowserHistory} from 'history';
+import { BrowserRouter, Route, Switch, Router } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 import MyAccount from '../components/MyAccount';
 import Notes from './Notes';
 import NavLink from './NavLink';
@@ -32,7 +32,6 @@ import { AuthContext } from '../contexts/AuthContext';
 const page = 'Demo';
 const drawerWidth = 240;
 export const customHistory = createBrowserHistory();
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -92,17 +91,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const test = (
-  <Router  history={customHistory}>
-  
+  <Router history={customHistory}>
     <Switch>
-     <Route path='/MyAccount' exact component={MyAccount}></Route>
-     <Route path='/' exact component={Notes}></Route>
-     <Route path='/Notes' exact component={Notes}></Route>
-     <Route path='/Logout' exact component={Logout}></Route>
-     {/* <Route component={Notes}></Route> */}
-  </Switch>
-    </Router>);
-export default function PersistentDrawerLeft()  {
+      <Route path='/MyAccount' exact component={MyAccount}></Route>
+      <Route path='/' exact component={Notes}></Route>
+      <Route path='/Notes' exact component={Notes}></Route>
+      <Route path='/Logout' exact component={Logout}></Route>
+      {/* <Route component={Notes}></Route> */}
+    </Switch>
+  </Router>);
+
+export default function PersistentDrawerLeft() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
@@ -116,9 +115,8 @@ export default function PersistentDrawerLeft()  {
   };
 
   return (
-
     <div className={classes.root}>
-         {/* <AuthContext.Consumer>
+      {/* <AuthContext.Consumer>
            { (context) => (<div>
                <h1> {context.isAuthenticated} </h1>
            </div>)
@@ -128,22 +126,19 @@ export default function PersistentDrawerLeft()  {
       <CssBaseline />
       <AppBar
         position="fixed"
-        color = "secondary"
+        color="secondary"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
-          
+
         })}
       >
         <Toolbar>
-        
           <IconButton
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
-            className={clsx(classes.menuButton, open && classes.hide)}
-          >
-            
+            className={clsx(classes.menuButton, open && classes.hide)}>
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
@@ -158,8 +153,7 @@ export default function PersistentDrawerLeft()  {
         open={open}
         classes={{
           paper: classes.drawerPaper,
-        }}
-      >
+        }}>
         <div className={classes.drawerHeader}>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
@@ -179,20 +173,15 @@ export default function PersistentDrawerLeft()  {
           ))}
           
         </List> */}
-         <Router  history={customHistory}><NavLink/></Router> 
-        
+        <Router history={customHistory}><NavLink /></Router>
         <Divider />
-        
       </Drawer>
       <main
         className={clsx(classes.content, {
           [classes.contentShift]: open,
-        })}
-      >
-        <div className={classes.drawerHeader}/>
-        
+        })}>
+        <div className={classes.drawerHeader} />
         {test}
-        
       </main>
     </div>
   );
