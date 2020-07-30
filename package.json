@@ -1,0 +1,26 @@
+{
+  "name": "googlekeepclone",
+  "version": "1.0.0",
+  "description": "Note Taking App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "author": "Dhruvi Bhatt",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-validator": "^6.6.0",
+    "mongoose": "^5.9.21",
+    "mongoose-type-email": "^1.0.12",
+    "node-localstorage": "^2.1.6",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "react-router-dom": "^5.2.0"
+  }
+}
