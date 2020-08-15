@@ -1,37 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
+
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
+import AuthService from '../services/AuthService';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-// import ListItem from '@material-ui/core/ListItem';
-// import ListItemIcon from '@material-ui/core/ListItemIcon';
-// import ListItemText from '@material-ui/core/ListItemText';
-// import InboxIcon from '@material-ui/icons/MoveToInbox';
-// import MailIcon from '@material-ui/icons/Mail';
-// import ArchiveIcon from '@material-ui/icons/Archive';
-// import Paper from '@material-ui/core/Paper';
-// import Grid from '@material-ui/core/Grid';
-import { BrowserRouter, Route, Switch, Router } from 'react-router-dom';
+
+import { Route, Switch, Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
-import MyAccount from '../components/MyAccount';
+import MyAccount from './MyAccount';
 import Notes from './Notes';
 import NavLink from './NavLink';
-
+import Archieve from './Archieve';
+import Trash from './Trash';
 import Logout from './Logout';
-import { AuthContext } from '../contexts/AuthContext';
+import Login from './Login';
+import ProgressBar from './ProgressBar';
 
-const page = 'Demo';
 const drawerWidth = 240;
 export const customHistory = createBrowserHistory();
+
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -89,22 +86,34 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 0,
   },
 }));
-
+ 
 const test = (
+  
   <Router history={customHistory}>
     <Switch>
       <Route path='/MyAccount' exact component={MyAccount}></Route>
-      <Route path='/' exact component={Notes}></Route>
       <Route path='/Notes' exact component={Notes}></Route>
+      <Route path='/Archieve' exact component={Archieve}></Route>
+      <Route path='/Trash' exact component={Trash}></Route>
       <Route path='/Logout' exact component={Logout}></Route>
-      {/* <Route component={Notes}></Route> */}
+      <Route component={Notes}></Route>
     </Switch>
-  </Router>);
+  </Router> 
+  );
 
-export default function PersistentDrawerLeft() {
+export default function PersistentDrawerLeft(props) {
+useEffect(() => {
+  AuthService.isAuthenticated().then(data => {
+    if (!data.isAuthenticated){
+      props.history.push("/Login");
+    }
+  });
+})
+
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
+
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -114,15 +123,12 @@ export default function PersistentDrawerLeft() {
     setOpen(false);
   };
 
+ 
+
   return (
     <div className={classes.root}>
-      {/* <AuthContext.Consumer>
-           { (context) => (<div>
-               <h1> {context.isAuthenticated} </h1>
-           </div>)
-                    }
-            
-        </AuthContext.Consumer> */}
+      {/* <ProgressBar/> */}
+
       <CssBaseline />
       <AppBar
         position="fixed"
@@ -146,6 +152,8 @@ export default function PersistentDrawerLeft() {
           </Typography>
         </Toolbar>
       </AppBar>
+      
+       
       <Drawer
         className={classes.drawer}
         variant="persistent"
@@ -160,28 +168,18 @@ export default function PersistentDrawerLeft() {
           </IconButton>
         </div>
         <Divider />
-        {/* <List>
-          <ListItem button key="Test">
-              <ListItemIcon><InboxIcon /></ListItemIcon>
-              <ListItemText primary="Test" />
-            </ListItem>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-          
-        </List> */}
+        
         <Router history={customHistory}><NavLink /></Router>
         <Divider />
       </Drawer>
+      
       <main
         className={clsx(classes.content, {
           [classes.contentShift]: open,
         })}>
         <div className={classes.drawerHeader} />
         {test}
+        
       </main>
     </div>
   );

@@ -1,23 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 const Logout = props => {
-//const [refreshDrawer,setRefreshDrawer] = useContext(DrawerContext);
+ 
+    const history = useHistory();
 
-    // AuthService.logout().then(data=>{
-    //     if(data.success){
-    //       // AuthContext.setUser(data.user);
-    //      //  AuthContext.setIsAuthenticated(false);
-    //        console.log(data + "from logout");
-    //     }
-    // });
         localStorage.clear();
-        props.history.push('/Login');
- //{setRefreshDrawer(true)}
-    return(
-        <div>
-            <h1> You have successfully Logout </h1> 
-        </div>
-    )
+        history.push('/Login');
+        window.location.reload(false);
+
 }
 
 export default Logout;

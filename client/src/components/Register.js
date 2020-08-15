@@ -35,14 +35,22 @@ const Register = props => {
   const onSubmit = e => {
     e.preventDefault();
     AuthService.register(user).then(data => {
-      const { message } = data;
-      alert(data);
-      resetForm();
-      if (!message) {
-        timerID = setTimeout(() => {
-          props.history.push('/Login');
-        }, 2000)
+      var message  = data.msg;
+      if(message)
+        alert("Message: " + message);
+     
+      if(!message){
+        console.log(data.errors[0].msg);
+        var errorsMsg = data.errors[0].msg;
+        alert("Errors: " + errorsMsg);
       }
+  
+
+      if(!errorsMsg)
+        if(message===" Account has been created"){
+          props.history.push('/Login');
+          resetForm(); 
+        }
     });
   }
 
@@ -83,11 +91,11 @@ const Register = props => {
         <Typography component="h1" variant="h5">
           Register
         </Typography>
-        <form className={classes.form} onSubmit={onSubmit} noValidate>
+        <form className={classes.form} onSubmit={onSubmit} >
           <TextField
             variant="outlined"
             margin="normal"
-            required
+            required='True'
             fullWidth
             id="firstname"
             label="First Name"
@@ -96,6 +104,7 @@ const Register = props => {
             onChange={onChange}
             autoFocus
           />
+
           <TextField
             variant="outlined"
             margin="normal"
@@ -106,7 +115,6 @@ const Register = props => {
             name="lastname"
             autoComplete="lastname"
             onChange={onChange}
-            autoFocus
           />
           <TextField
             variant="outlined"
@@ -118,7 +126,6 @@ const Register = props => {
             name="username"
             autoComplete="username"
             onChange={onChange}
-            autoFocus
           />
           <TextField
             variant="outlined"
@@ -139,18 +146,12 @@ const Register = props => {
             fullWidth
             name="email"
             label="Email"
-            type="text"
+            type="email"
             id="Email"
             autoComplete="current-password"
             onChange={onChange}
           />
           <Grid container>
-            <Grid item xs>
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
-            </Grid>
             <Grid item>
               <Button color="primary" onClick={goToLogin}>Login here</Button>
             </Grid>

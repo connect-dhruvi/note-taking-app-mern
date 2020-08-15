@@ -10,12 +10,20 @@ const NoteSchema = new mongoose.Schema({
     },
     updatedAt: {
         type: Date, 
-        default:Date.now , 
+        default:Date.now, 
     },
     isPriority:{
         type: Boolean,
         default: false
     },
+    archieve: {
+        type: Boolean,
+        default: false
+    },
+    trash: {
+        type: Boolean,
+        default: false
+    }
 }
 );
 
