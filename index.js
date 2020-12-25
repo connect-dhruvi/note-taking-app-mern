@@ -18,7 +18,7 @@ app.use(cookieParser());
 app.use(express.json());
 
 // Database Connection
-mongoose.connect("mongodb+srv://dhruvi:dhruvi@cluster0.ylkd7.mongodb.net/mernclass?retryWrites=true&w=majority", {
+mongoose.connect("[your connection string]", {
     useNewUrlParser: true,
     useUnifiedTopology: true},() => {
       console.log('Connected to Database');
