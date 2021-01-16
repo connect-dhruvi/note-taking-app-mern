@@ -22,21 +22,21 @@ API-Calls
 
 Users Links
 
-- POST                           http://localhost:5000/user/register       DHRUVI
-- POST                           http://localhost:5000/user/login          DHRUVI
-- GET                            http://localhost:5000/user/authenticated  DHRUVI 
+- POST                           http://localhost:5000/user/register       
+- POST                           http://localhost:5000/user/login          
+- GET                            http://localhost:5000/user/authenticated   
 
-- GET                            http://localhost:5000/user/logout         SHIVAM
-- PUT                            http://localhost:5000/user/update         SHIVAM
+- GET                            http://localhost:5000/user/logout         
+- PUT                            http://localhost:5000/user/update         
 
 Notes Links
 
-- POST FOR INSERT                http://localhost:5000/user/note           DHRUVI
-- GET FOR GETTING ARCHIEVE NOTES http://localhost:5000/user/notes/archive  DHRUVI
-- PUT FOR ARCHIEVE NOTES         http://localhost:5000/user/note/archive   DHRUVI
-- PUT FOR TRASH NOTES            http://localhost:5000/user/note/trash     DHRUVI
-- PUT                            http://localhost:5000/user/notes/update   DHRUVI
+- POST FOR INSERT                http://localhost:5000/user/note           
+- GET FOR GETTING ARCHIEVE NOTES http://localhost:5000/user/notes/archive  
+- PUT FOR ARCHIEVE NOTES         http://localhost:5000/user/note/archive   
+- PUT FOR TRASH NOTES            http://localhost:5000/user/note/trash     
+- PUT                            http://localhost:5000/user/notes/update   
 
-- GET                            http://localhost:5000/user/notes          SHIVAM
-- DELETE                         http://localhost:5000/user/notes/delete   SHIVAM
-- GET FOR GETTING TRASHED NOTES  http://localhost:5000/user/notes/trash    SHIVAM
+- GET                            http://localhost:5000/user/notes          
+- DELETE                         http://localhost:5000/user/notes/delete   
+- GET FOR GETTING TRASHED NOTES  http://localhost:5000/user/notes/trash    
